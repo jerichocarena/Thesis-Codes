@@ -10,5 +10,14 @@ A <- diversity(data, "simpson")
 summary(A)
 sd(A)
 
-# boxplot generation
+# ACE diversity index (per sample)
+install.packages("BiocManager")
+BiocManager::install("phyloseq")
+library(phyloseq)
+View(Healthy5)
+otu_mat <- as.matrix(Healthy5)
+OTU = otu_table(Healthy5, taxa_are_rows = TRUE)
+estimate_richness(Healthy5, split = TRUE, measures = "ACE")
+
+# boxplot generation for shannon, simpson, invsimpson diversity indices
 boxplot(A, B, ...., ylab="index", xlab="name", col="light blue", names=c("name","name",....))
