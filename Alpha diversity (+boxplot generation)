@@ -1,5 +1,14 @@
+install.packages("vegan")
+library(vegan)
 # shannon diversity index
 A <- diversity(data, "shannon")
 summary(A)
+sd(A)
+
+# simpson diversity index
+A <- diversity(data, "simpson")
+summary(A)
+sd(A)
+
 # boxplot generation
-boxplot(A, B, ...., ylab="Shannon Diversity Index", xlab="name", col="light blue", names=c("name","name",....))
+boxplot(A, B, ...., ylab="index", xlab="name", col="light blue", names=c("name","name",....))
