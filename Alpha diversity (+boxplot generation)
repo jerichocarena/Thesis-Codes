@@ -1,0 +1,5 @@
+# shannon diversity index
+A <- diversity(data, "shannon")
+summary(A)
+# boxplot generation
+boxplot(A, B, ...., ylab="Shannon Diversity Index", xlab="name", col="light blue", names=c("name","name",....))
