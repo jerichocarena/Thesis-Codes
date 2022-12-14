@@ -1,4 +1,4 @@
-# Alpha diversity indices (from https://rpubs.com/lconteville/713954)
+# Alpha diversity indices (from https://rpubs.com/lconteville/713954; commands compiled by Liliane Conteville)
 library("phyloseq")
 library("ggplot2")
 library("dplyr")
