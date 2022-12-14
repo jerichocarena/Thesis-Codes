@@ -1,3 +1,57 @@
+# Alpha diversity indices (from https://rpubs.com/lconteville/713954)
+library("phyloseq")
+library("ggplot2")
+library("dplyr")
+library("ggpubr")
+
+head(Overall)
+head(OTU_Table)
+head(Metadata)
+
+setdiff(rownames(Overall),OTU_Table$Genus)
+## character(0)
+
+rownames(OTU_Table) <- OTU_Table$Genus
+OTU_Table =  as.matrix(OTU_Table)
+
+OTU = otu_table(Overall, taxa_are_rows = TRUE)
+TAX = tax_table(OTU_Table)
+sampledata = sample_data(Metadata)
+physeq1 = phyloseq(OTU, TAX, sampledata)
+
+physeq1
+
+sample_data(physeq1)$Group <- factor((sample_data(physeq1)$Group), levels=c("Healthy","Overweight","Obese","T2D","Obese with T2D"))
+
+richness <- estimate_richness(physeq1)
+head(richness)
+plot_richness(physeq1)
+# boxplot generation
+plot_richness(physeq1, x="Group", measures="Shannon", color = "Group")+
+     geom_boxplot(alpha=0.6)+ 
+     theme(legend.position="none", axis.text.x=element_text(angle=45,hjust=1,vjust=1,size=12))
+
+a_my_comparisons <- list( c("Healthy", "Overweight"), c("Healthy", "Obese"), c("Healthy", "T2D"), c("Healthy", "Obese with T2D"))
+symnum = c(0, 0.0001, 0.001, 0.01, 0.05, 1), symbols = c("****", "***", "**", "*", "ns"))
+
+plot_richness(physeq1, x="Group", measures="Shannon", color = "Group")+
+  geom_boxplot(alpha=0.6)+ 
+  theme(legend.position="none", axis.text.x=element_text(angle=45,hjust=1,vjust=1,size=12))+
+  stat_compare_means(method = "wilcox.test", comparisons = a_my_comparisons, label = "p.signif", symnum = symnum)
+
+# A histogram can be created to check if the Shannon values estimated for the metagenomes are normally distributed:
+hist(richness$Shannon, main="Shannon index", xlab="")
+# If it is normally distributed, we can run anova tests and check if the variable Group impacts the Shannon diversity:
+anova.sh = aov(richness$Shannon ~ sample_data(physeq1)$Group)
+summary(anova.sh)
+TukeyHSD(anova.sh)
+
+# For Non-normally distributed data, we can use Kruskal-Wallis Rank Sum Test:
+kruskal.test(richness$Shannon ~ sample_data(physeq1)$Group)
+# We can also get a list with the p-values resulted of the Wilcoxon Tests considering each pair of groups:
+pairwise.wilcox.test(richness$Shannon, sample_data(physeq1)$Group, p.adj = "bonf")
+
+
 install.packages("vegan")
 library(vegan)
 # shannon diversity index
