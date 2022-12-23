@@ -1,11 +1,13 @@
 # Alpha diversity indices (from https://rpubs.com/lconteville/713954; commands compiled by Liliane Conteville)
+# Alpha diversity indices available from the ff. command: ACE, Chao1, Observed, Shannon, Simpson, InvSimpson, Fisher
+
 library("phyloseq")
 library("ggplot2")
 library("dplyr")
 library("ggpubr")
 
 # Load the files: raw counts table, taxonomy table, metadata (all in .csv)
-# In this example, the Overall is the raw counts table, the OTU_Table is the taxonomy table, and the Metadata as the name suggests is the metadata file.
+# In this example, the Overall is the raw counts table, the OTU_Table is the taxonomy table, and the Metadata, as the name suggests, is the metadata file.
 head(Overall)
 head(OTU_Table)
 head(Metadata)
