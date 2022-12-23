@@ -1,5 +1,5 @@
 # Alpha diversity indices (from https://rpubs.com/lconteville/713954; commands compiled by Liliane Conteville)
-# Alpha diversity indices available from the ff. command: ACE, Chao1, Observed, Shannon, Simpson, InvSimpson, Fisher
+# Alpha diversity indices available from the ff. commands: ACE, Chao1, Observed, Shannon, Simpson, InvSimpson, Fisher
 
 library("phyloseq")
 library("ggplot2")
