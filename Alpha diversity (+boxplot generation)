@@ -33,7 +33,8 @@ plot_richness(physeq1)
 # boxplot generation
 plot_richness(physeq1, x="Group", measures="Shannon", color = "Group")+
      geom_boxplot(alpha=0.6)+ 
-     theme(legend.position="none", axis.text.x=element_text(angle=45,hjust=1,vjust=1,size=12))
+     theme(legend.position="none", axis.text.x=element_text(angle=45,hjust=1,vjust=1,size=12))+
+     theme((legend.title = element_text(size=30))
 
 a_my_comparisons <- list( c("Healthy", "Overweight"), c("Healthy", "Obese"), c("Healthy", "T2D"), c("Healthy", "Obese with T2D"))
 symnum = c(0, 0.0001, 0.001, 0.01, 0.05, 1), symbols = c("****", "***", "**", "*", "ns"))
