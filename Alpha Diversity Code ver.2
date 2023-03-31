@@ -27,12 +27,12 @@ sample_data(physeq1)$Group <- factor((sample_data(physeq1)$Group), levels=c("Sit
 richness <- estimate_richness(physeq1)
 head(richness)
 plot_richness(physeq1)
+
 # boxplot generation
 plot_richness(physeq1, x="Site", measures="Shannon", color = "Site")+
   geom_boxplot(alpha=0.6)+ 
   theme(legend.position="none", axis.text.x=element_text(angle=45,hjust=1,vjust=1,size=12))
   
-        
 a_my_comparisons <- list( c("Site 1", "Site 2"), c("Site 1", "Site 3"), c("Site 2", "Site 3"))
 symnum = c(0, 0.0001, 0.001, 0.01, 0.05, 1), symbols = c("****", "***", "**", "*", "ns"))
 
@@ -45,6 +45,7 @@ plot_richness(physeq1, x="Site", measures="Shannon", color = "Site")+
 
 # A histogram can be created to check if the Shannon values estimated for the metagenomes are normally distributed:
 hist(richness$Shannon, main="Shannon index", xlab="")
+
 # If it is normally distributed, we can run anova tests and check if the variable Group impacts the Shannon diversity:
 anova.sh = aov(richness$Shannon ~ sample_data(physeq1)$Group)
 summary(anova.sh)
