@@ -81,3 +81,4 @@ estimate_richness(Healthy5, split = TRUE, measures = "ACE")
 # boxplot generation for shannon, simpson, invsimpson diversity indices
 boxplot(A, B, ...., ylab="index", xlab="name", col="light blue", names=c("name","name",....))
 
+     # Compiled and annotated by Jericho V. Carena
