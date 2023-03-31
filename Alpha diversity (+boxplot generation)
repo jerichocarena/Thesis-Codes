@@ -21,15 +21,18 @@ OTU_Table =  as.matrix(OTU_Table)
 OTU = otu_table(Overall, taxa_are_rows = TRUE)
 TAX = tax_table(OTU_Table)
 sampledata = sample_data(Metadata)
+
 physeq1 = phyloseq(OTU, TAX, sampledata)
 
 physeq1
 
 sample_data(physeq1)$Group <- factor((sample_data(physeq1)$Group), levels=c("Healthy","Overweight","Obese","T2D","Obese with T2D"))
 
+# Phyloseq has the function “Estimate Richness” which returns the results of some alpha diversity estimates for each metagenome:
 richness <- estimate_richness(physeq1)
 head(richness)
 plot_richness(physeq1)
+
 # boxplot generation
 plot_richness(physeq1, x="Group", measures="Shannon", color = "Group")+
      geom_boxplot(alpha=0.6)+ 
