@@ -41,7 +41,7 @@ plot_richness(physeq1, x="Site", measures="Shannon", color = "Site")+
   theme(legend.position="none", axis.text.x=element_text(angle=45,hjust=1,vjust=1,size=12))+
   stat_compare_means(method = "wilcox.test", comparisons = a_my_comparisons, label = "p.signif", symnum = symnum)
 
-#POST-HOC ANALYSIS
+# POST-HOC ANALYSIS
 
 # A histogram can be created to check if the Shannon values estimated for the metagenomes are normally distributed:
 hist(richness$Shannon, main="Shannon index", xlab="")
