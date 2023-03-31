@@ -32,6 +32,7 @@ sample_data(physeq1)$Group <- factor((sample_data(physeq1)$Group), levels=c("Hea
 richness <- estimate_richness(physeq1)
 head(richness)
 plot_richness(physeq1)
+# A dot plot will be shown which may not be as informative as other types of plot, especially when dealing with a large data.
 
 # boxplot generation
 plot_richness(physeq1, x="Group", measures="Shannon", color = "Group")+
